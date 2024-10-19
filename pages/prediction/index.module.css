@@ -57,3 +57,21 @@
     font-size: 1.1rem;
     margin: 0.5rem 0;
 }
+
+
+
+
+.ReviewButton {
+    background-color: var(--primary-color); /* Use your primary color */
+    color: #FFF; /* Text color */
+    font-size: 1.2rem; /* Font size */
+    padding: 0.75rem 1.5rem; /* Padding for the button */
+    border: none; /* Remove default border */
+    border-radius: 0.5rem; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.ReviewButton:hover {
+    background-color: #3565e8; /* Change color on hover */
+}

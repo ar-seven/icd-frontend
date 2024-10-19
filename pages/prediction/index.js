@@ -33,15 +33,27 @@ let dummyDataCPT = [
 
 const Prediction = () => {
   const [icdCode, setIcdCode] = useState([]); // State to hold the ICD code
+  const [cptCode, setCptCode] = useState([]); // State to hold the ICD code
   useEffect(() => {
     const storedIcdCode = localStorage.getItem('icd_code');
+    const storedCptCode = localStorage.getItem('cpt_code');
     if (storedIcdCode) {
       const parsedIcdCode = JSON.parse(storedIcdCode);
-      console.log("Stored ICD Code:", parsedIcdCode);
       setIcdCode(parsedIcdCode);
       console.log("Updated icdCode state:", parsedIcdCode); // Check the updated state
+
+      const parsedCptCode = JSON.parse(storedCptCode)
+      setCptCode(parsedCptCode)
+      console.log("Updated cptCode state:", parsedCptCode); // Check the updated state
+
     }
   }, []); // Dependency array to run effect when icd_code changes 
+
+  const handleSubmit = () => {
+    // Logic for handling the review of codes
+    console.log("Review Codes submitted");
+    // You can add further functionality here, like navigating to another page or displaying a modal
+  };
 
   return (
         <div className={styles.Prediction}>
@@ -61,14 +73,17 @@ const Prediction = () => {
                 </div>
                 <div className={styles.CPTContainer}>
                     <h2 className={styles.CPTTitle}>CPT Codes</h2>
-                    {dummyDataCPT.map((item, index) => (
+                    {cptCode.length > 0 ? cptCode.map((item, index) => (
                         <div key={index} className={styles.CodeCard}>
-                            <h2 className={styles.Disease}>{item.Disease}</h2>
-                            <p className={styles.CPT}>CPT Code: {item.CPT}</p>
+                            <h2 className={styles.Disease}>{item.Procedure}</h2>
+                            <p className={styles.Icd}>CPT Code: {item.CPT}</p>
+                            <p className={styles.Reason}>Reason: {item.Reason}</p>
+                            <p className={styles.Description}>Description: {item.Description_from_dataset}</p> {/* Added Description */}
                         </div>
-                    ))}
+                    )) : <p>No ICD codes found.</p>}
                 </div>
             </div>
+            <button onClick={handleSubmit} className={styles.ReviewButton}>Review Codes</button>
         </div>
     );
 };

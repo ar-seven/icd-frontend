@@ -15,6 +15,8 @@ export default function MyApp({}) {
 
   const [diagnosis, setDiagnosis] = useState(''); // State for Diagnosis input
   const [procedures, setProcedures] = useState(''); // State for Procedures input
+  const [loading, setLoading] = useState(false); // State for Procedures input
+
 
   const router = useRouter();
 
@@ -28,6 +30,7 @@ export default function MyApp({}) {
   }, []);
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
 
     const patientDetails = {
@@ -39,6 +42,7 @@ export default function MyApp({}) {
       procedures: procedures, // Include procedures in submission
     };
 
+    //icd
     try {
       // Call the ICD prediction endpoint
       const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}`, {
@@ -54,16 +58,39 @@ export default function MyApp({}) {
         // console.log('ICD codes predicted successfully', data);
         // Navigate to the prediction page with the 
         localStorage.setItem('icd_code', JSON.stringify(data));
-        router.push({
-          pathname: '/prediction',
-          query: { icd_code: data },
-        });
       } else {
         console.error('Failed to predict ICD codes:', data);
       }
     } catch (error) {
       console.error('An error occurred:', error);
     }
+
+
+    //cpt
+    try {
+      // Call the ICD prediction endpoint
+      const response = await fetch(`http://localhost:5000/cpt?proc_n=${procedures}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, // Example diagnosis
+      });
+
+      const data = await response.json(); // Parse the JSON response
+      console.log(data,"data")
+      if (response.ok) {
+        // console.log('ICD codes predicted successfully', data);
+        // Navigate to the prediction page with the 
+        localStorage.setItem('cpt_code', JSON.stringify(data));
+        router.push({
+          pathname: '/prediction'        });
+      } else {
+        console.error('Failed to predict ICD codes:', data);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+    setLoading(false)
   };
 
   return (
@@ -120,7 +147,11 @@ export default function MyApp({}) {
         </div>
 
         <div className={styles.Upload__File_submit}>
-            <button type="submit">Predict ICD and CPT Codes</button>
+            {loading ? ( // Show spinner when loading is true
+                <div className={styles.Spinner}></div>
+            ) : (
+                <button type="submit">Predict ICD and CPT Codes</button>
+            )}
         </div>
       </div>
 
