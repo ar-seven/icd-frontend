@@ -1,0 +1,15 @@
+[
+    {
+        "icd-code": "ICD_CODE_1",
+        "cpt-codes": [
+            "CPT_CODE_1",
+            "CPT_CODE_2"
+        ]
+    },
+    {
+        "icd-code": "ICD_CODE_2",
+        "cpt-codes": [
+            "CPT_CODE_3"
+        ]
+    }
+]
