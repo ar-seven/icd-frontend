@@ -86,7 +86,13 @@ const Prediction = () => {
                     )) : <p>No ICD codes found.</p>}
                 </div>
             </div>
-            <button onClick={handleSubmit} className={styles.ReviewButton}>Review Codes</button>
+            <div className={styles.Upload__File_submit}>
+      {loading ? ( // Show spinner when loading is true
+        <div className={styles.Spinner}></div>
+      ) : (
+        <button onClick={handleSubmit} className={styles.ReviewButton}>Review Codes</button>
+      )}
+    </div>
         </div>
     );
 };
