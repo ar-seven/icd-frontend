@@ -39,27 +39,31 @@ export default function MyApp({}) {
       procedures: procedures, // Include procedures in submission
     };
 
-    router.push({
-      pathname: '/prediction',
-      query: { patientDetails: JSON.stringify(patientDetails) },
-    });
+    try {
+      // Call the ICD prediction endpoint
+      const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, // Example diagnosis
+      });
 
-    // try {
-    //   // Call your AI prediction function here for both ICD and CPT codes
-    //   const result = await window.electron.predictCodes(patientDetails);
-    //   if (result.success) {
-    //     console.log('ICD and CPT codes predicted successfully', result.data);
-    //     // Navigate to the next page with the predicted codes
-    //     router.push({
-    //       pathname: '/NextPage', // Adjust to your actual next page
-    //       query: { codes: result.data }, // Assuming result.data contains both ICD and CPT codes
-    //     });
-    //   } else {
-    //     console.error('Failed to predict codes:', result.error);
-    //   }
-    // } catch (error) {
-    //   console.error('An error occurred:', error);
-    // }
+      const data = await response.json(); // Parse the JSON response
+      console.log(data,"data")
+      if (response.ok) {
+        // console.log('ICD codes predicted successfully', data);
+        // Navigate to the prediction page with the 
+        localStorage.setItem('icd_code', JSON.stringify(data));
+        router.push({
+          pathname: '/prediction',
+          query: { icd_code: data },
+        });
+      } else {
+        console.error('Failed to predict ICD codes:', data);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   };
 
   return (
