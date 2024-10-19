@@ -45,7 +45,7 @@ export default function MyApp({}) {
     //icd
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}`, {
+      const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}&procedure=${procedures}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default function MyApp({}) {
     //cpt
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/cpt?proc_n=${procedures}`, {
+      const response = await fetch(`http://localhost:5000/cpt?proc_n=${procedures}&diagnosis=${diagnosis}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

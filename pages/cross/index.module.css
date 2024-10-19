@@ -1,0 +1,61 @@
+.Billing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: var(--background-color);
+}
+
+.Title {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.RelevantTitle {
+    color: rgb(76, 175, 80); /* Changed to a green color */
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+}
+
+.IrrelevantTitle {
+    color: rgb(244, 67, 54); /* Changed to a red color */
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+}
+
+.CodeCard {
+    background: var(--primary-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.ICDTitle {
+    color: rgb(45, 109, 227);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.Procedure {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.Reason, .CPT {
+    color: #FFF;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Color coding for relevant and irrelevant procedures */
+.Relevant {
+    background-color: rgba(76, 175, 80, 0.2); /* Light green */
+}
+
+.Irrelevant {
+    background-color: rgba(244, 67, 54, 0.2); /* Light red */
+}
+
