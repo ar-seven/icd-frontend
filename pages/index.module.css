@@ -1,0 +1,137 @@
+.Upload {
+    display: flex;
+    flex: 1;
+    margin: 3.44rem;
+    overflow-y: hidden;
+}
+
+.Upload__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.Upload__container_top {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.Upload__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--primary-color);
+    border-radius: 2.5rem;
+    gap: 2rem;
+    padding: 2rem 3.94rem 2.5rem 3.87rem;
+    
+    
+}
+
+.Upload__form span {
+    color: #FFF;
+    font-size: 1.6rem;
+    font-weight: 600;
+    align-self: flex-start;
+    
+}
+
+.Upload__form div {
+    display: flex;
+    flex-direction: column;
+    width: 32rem;
+    gap: 0.5rem;
+}
+
+.Upload__form label {
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01rem;
+}
+
+.Upload__form input, .Upload__form select {
+    height: 3.625rem;
+    border-radius: 8px;
+    background: var(--primary-color);
+    border: 1px solid #FFF;
+    padding: 0rem 1rem;
+    color: #FFF;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01rem;
+}
+
+.Upload__form input:focus, .Upload__form select:focus {
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+    
+}
+
+.Upload__File_submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    padding: 3.56rem 1.81rem 3.62rem 1.56rem;
+    border-radius: 2.5rem;
+    background: var(--primary-color);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.Upload__File_submit button {
+    font-family: Poppins;
+    border-radius: 1.25rem;
+    background: var(--secondary-color);
+    color: #FFF;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 30rem;
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+}
+
+.Upload__File_submit button:hover {
+    font-size: 1.7rem;
+}
+
+.Right_Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-left: 90px;
+    width: 100%;
+}
+
+.Upload__description {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.Upload__form textarea {
+    background: var(--primary-color);
+    border: 1px solid #FFF;
+    color: #FFF;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01rem;
+}
+
+.Upload__form textarea:focus {
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+}

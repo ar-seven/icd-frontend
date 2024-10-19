@@ -1,0 +1,41 @@
+.Prediction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: var(--background-color);
+}
+
+.Title {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.CodesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.CodeCard {
+    background: var(--primary-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.Disease {
+    /* color: var(--secondary-color); */
+    color: rgb(45, 109, 227);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.ICD, .CPT, .Reason {
+    color: #FFF;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
