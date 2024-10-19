@@ -1,39 +1,14 @@
 import React from 'react';
 import styles from './index.module.css';
 import { useState, useEffect } from 'react';
-
-var dummyDataICD = [
-    {
-        Disease: "Anemia",
-        ICD: "D64.9",
-        Reason: "The patient was referred for anemia with a hemoglobin level of 12.6 on recent labs, indicating a potential low red blood cell count."
-    },
-    {
-        Disease: "Hypertension",
-        ICD: "I10",
-        Reason: "The patient has a history of hypertension with recent blood pressure readings consistently above normal."
-    }
-];
-
-
-let dummyDataCPT = [
-    {
-        Disease: "Anemia",
-        CPT: "85025" // Sample CPT code
-    },
-    {
-        Disease: "Hypertension",
-        CPT: "99213" // Sample CPT code
-    }
-];
-
-
-
-
+import { useRouter } from 'next/router';
 
 const Prediction = () => {
+  const router = useRouter();
+
   const [icdCode, setIcdCode] = useState([]); // State to hold the ICD code
   const [cptCode, setCptCode] = useState([]); // State to hold the ICD code
+  const [loading, setLoading] = useState(false); 
   useEffect(() => {
     const storedIcdCode = localStorage.getItem('icd_code');
     const storedCptCode = localStorage.getItem('cpt_code');
@@ -49,10 +24,38 @@ const Prediction = () => {
     }
   }, []); // Dependency array to run effect when icd_code changes 
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Logic for handling the review of codes
     console.log("Review Codes submitted");
+    setLoading(true);
+    const icd_input = encodeURIComponent(JSON.stringify(icdCode)); // Encode the JSON string
+    const cpt_input = encodeURIComponent(JSON.stringify(cptCode)); // Encode the JSON string
+    console.log(icd_input)
     // You can add further functionality here, like navigating to another page or displaying a modal
+        //icd
+        try {
+          // Call the ICD prediction endpoint
+          const response = await fetch(`http://localhost:5000/icd_cpt_cross_reference?icd_codes=${icd_input}&cpt_codes=${cpt_input}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, // Example diagnosis
+          });
+    
+          const data = await response.json(); // Parse the JSON response
+          if (response.ok) {
+            // console.log('ICD codes predicted successfully', data);
+            // Navigate to the prediction page with the 
+            localStorage.setItem('cross', JSON.stringify(data));
+            router.push({
+              pathname: '/cross'        });
+          } else {
+            console.error('Failed to predict ICD codes:', data);
+          }
+        } catch (error) {
+          console.error('An error occurred:', error);
+        }
+    setLoading(false)    
   };
 
   return (

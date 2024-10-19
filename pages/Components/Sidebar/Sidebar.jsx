@@ -65,8 +65,8 @@ const Sidebar = () => {
               </div>
             </Link>
 
-            <Link href='/Prediction'>
-              <div className={`${styles.sidebar__nav_page} ${currentRoute === '/Prediction' && styles.sidebar__nav_page_active}`}>
+            <Link href='/cross'>
+              <div className={`${styles.sidebar__nav_page} ${currentRoute === '/cross' && styles.sidebar__nav_page_active}`}>
                 <Image 
                   src='/icons/prediction.svg'
                   alt='predict'
