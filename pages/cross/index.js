@@ -48,10 +48,10 @@ const Billing = () => {
     // Patient details
     const patientDetails = [
       ['Date:', new Date().toLocaleDateString()],
-      ['Patient Name:', 'John Doe'], // Replace with actual patient name
-      ['Patient ID:', '123456'], // Replace with actual patient ID
-      ['Age:', '30'], // Replace with actual age
-      ['Gender:', 'Male'] // Replace with actual gender
+      ['Patient Name:', localStorage.getItem('patient_name')],
+      ['Patient ID:', localStorage.getItem('patient_id')],
+      ['Age:', localStorage.getItem('age')],
+      ['Gender:', localStorage.getItem('gender')]
     ];
     
     doc.autoTable({
@@ -69,7 +69,7 @@ const Billing = () => {
     if (billingData && billingData.Relevant.length > 0) {
       const relevantProcedures = billingData.Relevant.map(item => {
         const price = Math.floor(Math.random() * 1000); // Dummy price
-        return [item.ICD, item.Procedure, `$${price}`, item.CPT]; // Include CPT code
+        return [item.ICD, item.CPT, item.Procedure, `$${price}`]; // Changed order: ICD and CPT first
       });
 
       // Add a title for the relevant procedures
@@ -81,7 +81,7 @@ const Billing = () => {
       // Create the table for relevant procedures
       doc.autoTable({
         startY: y,
-        head: [['ICD Code', 'Procedure', 'Price', 'CPT Code']], // Added CPT Code to the header
+        head: [['ICD Code', 'CPT Code', 'Procedure', 'Price']], // Updated header order
         body: relevantProcedures,
         theme: 'striped',
         headStyles: { fillColor: [0, 0, 100], textColor: 255 },

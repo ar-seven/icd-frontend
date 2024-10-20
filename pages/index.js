@@ -42,6 +42,11 @@ export default function MyApp({}) {
       procedures: procedures, // Include procedures in submission
     };
 
+    localStorage.setItem('patient_name', patientName);
+    localStorage.setItem('patient_id', patientId);
+    localStorage.setItem('age', age);
+    localStorage.setItem('gender', gender);
+
     //icd
     try {
       // Call the ICD prediction endpoint

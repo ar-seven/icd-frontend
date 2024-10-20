@@ -59,3 +59,17 @@
     background-color: rgba(244, 67, 54, 0.2); /* Light red */
 }
 
+.ReportButton {
+    background-color: rgb(45, 109, 227); /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Padding */
+    font-size: 1.6rem; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.ReportButton:hover {
+    background-color: var(--primary-color); /* Darker green on hover */
+}
