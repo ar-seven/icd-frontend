@@ -53,7 +53,7 @@ const Sidebar = () => {
                   width={24}
                   height={24}
                 />
-                <span className={styles.sidebar__nav_page_text}>ICD/CPT</span>
+                <span className={styles.sidebar__nav_page_text}>ICD & CPT</span>
                 <span className={styles.sidebar__nav_page_right}>
                 <Image
                   src='/icons/right.svg'
@@ -73,7 +73,7 @@ const Sidebar = () => {
                   width={24}
                   height={24}
                 />
-                <span className={styles.sidebar__nav_page_text}>Prediction</span>
+                <span className={styles.sidebar__nav_page_text}>Billing and Report</span>
                 <span className={styles.sidebar__nav_page_right}>
                 <Image
                   src='/icons/right.svg'
