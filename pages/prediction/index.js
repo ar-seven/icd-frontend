@@ -81,7 +81,7 @@ const Prediction = () => {
                             <h2 className={styles.Disease}>{item.Procedure}</h2>
                             <p className={styles.Icd}>CPT Code: {item.CPT}</p>
                             <p className={styles.Reason}>Reason: {item.Reason}</p>
-                            <p className={styles.Description}>Description: {item.Description_from_dataset}</p> {/* Added Description */}
+                            <p className={styles.Description}>Description: {item.Description_from_dataset.Tests}</p> {/* Added Description */}
                         </div>
                     )) : <p>No ICD codes found.</p>}
                 </div>
