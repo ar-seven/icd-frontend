@@ -20,7 +20,7 @@ const Sidebar = () => {
               width={37}
               height={37}
             />
-            <span className={styles.sidebar__heading_title}>Medi Cure</span>
+            <span className={styles.sidebar__heading_title}>Medi Claim</span>
         </div>
 
         <div className={styles.sidebar__nav}>
