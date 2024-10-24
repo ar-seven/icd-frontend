@@ -48,13 +48,42 @@ export default function MyApp({}) {
     localStorage.setItem('gender', gender);
 
     //icd
+    // try {
+    //   // Call the ICD prediction endpoint
+    //   const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}&procedure=${procedures}`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     }, // Example diagnosis
+    //   });
+
+    //   const data = await response.json(); // Parse the JSON response
+    //   console.log(data,"data")
+    //   if (response.ok) {
+    //     // console.log('ICD codes predicted successfully', data);
+    //     // Navigate to the prediction page with the 
+    //     localStorage.setItem('icd_code', JSON.stringify(data));
+    //   } else {
+    //     console.error('Failed to predict ICD codes:', data);
+    //   }
+    // } catch (error) {
+    //   console.error('An error occurred:', error);
+    // }
+
+    const diagnosisData = {
+      diagnosis_data: diagnosis,
+      procedure: procedures
+    };
+
+
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/icd?diagnosis_data=${diagnosis}&procedure=${procedures}`, {
+      const response = await fetch(`http://localhost:5000/icd/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         }, // Example diagnosis
+        body: JSON.stringify(diagnosisData)
       });
 
       const data = await response.json(); // Parse the JSON response
