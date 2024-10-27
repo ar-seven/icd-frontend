@@ -83,7 +83,7 @@ export default function MyApp({}) {
 
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/icd/`, {
+      const response = await fetch(`http://icd-backend.onrender.com/icd/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ export default function MyApp({}) {
     //cpt
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/cpt/`, {
+      const response = await fetch(`http://icd-backend.onrender.com/cpt/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
