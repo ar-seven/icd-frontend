@@ -38,7 +38,7 @@ const Prediction = () => {
         //icd
         try {
           // Call the ICD prediction endpoint
-          const response = await fetch(`http://icd-backend.onrender.com/icd_cpt_cross_reference/`, {
+          const response = await fetch(`https://icd-backend.onrender.com/icd_cpt_cross_reference/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
