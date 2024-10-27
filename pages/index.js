@@ -189,7 +189,7 @@ export default function MyApp({}) {
 
       <div className={styles.Right_Container}>
       <div className={styles.Upload__description}>
-          <p>This MVP predicts ICD and CPT codes based on  diagnosis, and procedures. It aims to support efficient billing and insurance claims but may produce errors. Accurate input improves code prediction and cross-referencing between ICD and CPT codes</p>
+          <p>This MVP predicts ICD and CPT codes based on  diagnosis, and procedures. It aims to support efficient billing and insurance claims. Accurate input improves code prediction and cross-referencing between ICD and CPT codes</p>
         </div>
 
         <div className={styles.Upload__File_submit}>
