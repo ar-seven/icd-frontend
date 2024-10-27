@@ -7,8 +7,8 @@ const Billing = () => {
 
   useEffect(() => {
     const cross = localStorage.getItem('cross');
-    const result = JSON.parse(cross);
-    const second = JSON.parse(result)
+    // const result = JSON.parse(cross);
+    const second = JSON.parse(cross)
 
     console.log(second); 
     setBillingData(second);

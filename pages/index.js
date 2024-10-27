@@ -25,8 +25,8 @@ export default function MyApp({}) {
     setPatientId('12345');
     setAge('30');
     setGender('Male');
-    setDiagnosis('Diabetes');
-    setProcedures('Blood Test');
+    setDiagnosis(localStorage.getItem('diagnosis') || "Diabetes");
+    setProcedures(localStorage.getItem('procedure') || "Blood Test");
   }, []);
 
   const handleSubmit = async (e) => {
@@ -46,6 +46,11 @@ export default function MyApp({}) {
     localStorage.setItem('patient_id', patientId);
     localStorage.setItem('age', age);
     localStorage.setItem('gender', gender);
+    localStorage.setItem('diagnosis', diagnosis);
+    localStorage.setItem('procedure', procedures);
+    localStorage.removeItem('icd_code');
+    localStorage.removeItem('cpt_code');
+    localStorage.removeItem('cross',  );
 
     //icd
     // try {
@@ -82,6 +87,7 @@ export default function MyApp({}) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+
         }, // Example diagnosis
         body: JSON.stringify(diagnosisData)
       });
@@ -99,15 +105,21 @@ export default function MyApp({}) {
       console.error('An error occurred:', error);
     }
 
+    const procedureData = {
+      diagnosis_data: diagnosis,
+      procedure: procedures
+    };
+
 
     //cpt
     try {
       // Call the ICD prediction endpoint
-      const response = await fetch(`http://localhost:5000/cpt?proc_n=${procedures}&diagnosis=${diagnosis}`, {
+      const response = await fetch(`http://localhost:5000/cpt/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         }, // Example diagnosis
+        body: JSON.stringify(procedureData)
       });
 
       const data = await response.json(); // Parse the JSON response
@@ -119,7 +131,7 @@ export default function MyApp({}) {
         router.push({
           pathname: '/prediction'        });
       } else {
-        console.error('Failed to predict ICD codes:', data);
+        console.error('Failed to predict CPT codes:', data);
       }
     } catch (error) {
       console.error('An error occurred:', error);
@@ -142,7 +154,7 @@ export default function MyApp({}) {
           <input type="text" value={patientName} onChange={(e) => setPatientName(e.target.value)} required />
           </div>
 
-          <div>
+          {/* <div>
           <label>Patient ID:</label>
           <input type="text" value={patientId} onChange={(e) => setPatientId(e.target.value)} required />
           </div>
@@ -160,7 +172,7 @@ export default function MyApp({}) {
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select> 
-          </div>
+          </div> */}
 
           <div>
           <label>Diagnosis:</label>
@@ -177,7 +189,7 @@ export default function MyApp({}) {
 
       <div className={styles.Right_Container}>
       <div className={styles.Upload__description}>
-          <p>This application utilizes advanced algorithms to predict ICD (International Classification of Diseases) and CPT (Current Procedural Terminology) codes based on the patient's demographic information, diagnosis, and procedures performed. Accurate and complete information is crucial for generating the most reliable predictions. ICD codes are used to classify diseases and health problems, while CPT codes are used to report medical, surgical, and diagnostic procedures. By providing detailed and accurate information, healthcare professionals can ensure that the predicted codes are precise, facilitating efficient billing, insurance claims, and medical record-keeping processes.</p>
+          <p>This MVP predicts ICD and CPT codes based on  diagnosis, and procedures. It aims to support efficient billing and insurance claims but may produce errors. Accurate input improves code prediction and cross-referencing between ICD and CPT codes</p>
         </div>
 
         <div className={styles.Upload__File_submit}>

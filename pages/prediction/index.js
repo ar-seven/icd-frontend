@@ -28,18 +28,22 @@ const Prediction = () => {
     // Logic for handling the review of codes
     console.log("Review Codes submitted");
     setLoading(true);
+    const crossCheck = {
+      icd_codes:JSON.stringify(icdCode),
+      cpt_codes:JSON.stringify(cptCode)
+    }
     const icd_input = encodeURIComponent(JSON.stringify(icdCode)); // Encode the JSON string
     const cpt_input = encodeURIComponent(JSON.stringify(cptCode)); // Encode the JSON string
-    console.log(icd_input)
     // You can add further functionality here, like navigating to another page or displaying a modal
         //icd
         try {
           // Call the ICD prediction endpoint
-          const response = await fetch(`http://localhost:5000/icd_cpt_cross_reference?icd_codes=${icd_input}&cpt_codes=${cpt_input}`, {
+          const response = await fetch(`http://localhost:5000/icd_cpt_cross_reference/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             }, // Example diagnosis
+            body: JSON.stringify(crossCheck)
           });
     
           const data = await response.json(); // Parse the JSON response
@@ -81,7 +85,7 @@ const Prediction = () => {
                             <h2 className={styles.Disease}>{item.Procedure}</h2>
                             <p className={styles.Icd}>CPT Code: {item.CPT}</p>
                             <p className={styles.Reason}>Reason: {item.Reason}</p>
-                            <p className={styles.Description}>Description: {item.Description_from_dataset.Tests}</p> {/* Added Description */}
+                            <p className={styles.Description}>Description: {item.Description_from_dataset}</p> {/* Added Description */}
                         </div>
                     )) : <p>No ICD codes found.</p>}
                 </div>
